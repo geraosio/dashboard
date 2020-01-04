@@ -9,8 +9,8 @@
 </template>
 
 <style lang="scss">
-@import "@/styles/colors.scss";
-@import "@/styles/typography.scss";
+@import '@/styles/colors.scss';
+@import '@/styles/typography.scss';
 
 body {
   background-color: $dark-blue;
