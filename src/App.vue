@@ -5,9 +5,6 @@
 </template>
 
 <style lang="scss">
-@import '@/styles/colors.scss';
-@import '@/styles/typography.scss';
-
 body {
   background-color: $dark-blue;
 }
@@ -26,18 +23,5 @@ p {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $white;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: $white;
-    }
-  }
 }
 </style>
