@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ container__dark: isDarkMode }">
     <div class="signin">
-      <div class="signin--new">
+      <div class="signin--new" :class="{ 'signin--new__dark': isDarkMode }">
         Don't have an account yet?
         <router-link to="/request" class="signin--link signin--link__new">
           Request an account here!
@@ -10,21 +10,44 @@
       <div class="signin--wrapper">
         <img
           src="@/assets/DCHQ.svg"
-          alt="DesignCode Logo"
+          alt="Design+Code Logo"
           class="signin--logo"
+          v-if="isDarkMode"
         />
-        <h4 class="signin--title">Sign into Design+Code</h4>
+        <img
+          src="@/assets/DCHQ-dark.svg"
+          alt="Design+Code Logo"
+          class="signin--logo"
+          v-if="!isDarkMode"
+        />
+        <h4
+          class="signin--title"
+          :class="{ 'signin--title__dark': isDarkMode }"
+        >
+          Sign into Design+Code
+        </h4>
         <input
           type="email"
           placeholder="design.code@designcode.com"
           class="signin--input"
+          :class="{ 'signin--input__dark': isDarkMode }"
         />
-        <input type="password" placeholder="********" class="signin--input" />
+        <input
+          type="password"
+          placeholder="********"
+          class="signin--input"
+          :class="{ 'signin--input__dark': isDarkMode }"
+        />
         <button class="signin--button">Sign In</button>
-        <router-link to="/recover" class="signin--link">
+        <router-link
+          to="/recover"
+          class="signin--link"
+          :class="{ 'signin--link__dark': isDarkMode }"
+        >
           If you are not sure what to put in the asterisks, don't worry click
           here!
         </router-link>
+        <button class="signin--button" @click="toggleDarkMode">Toggle</button>
       </div>
     </div>
   </div>
@@ -32,7 +55,18 @@
 
 <script>
 export default {
-  name: 'SignIn'
+  name: 'SignIn',
+  data() {
+    return {
+      isDarkMode: true
+    }
+  },
+  methods: {
+    toggleDarkMode() {
+      this.isDarkMode = !this.isDarkMode
+      document.body.style.background = this.isDarkMode ? '#212c4f' : '#f0f3f5'
+    }
+  }
 }
 </script>
 
@@ -42,16 +76,29 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: $light-gray;
+
+  &__dark {
+    background-color: $dark-blue;
+  }
 
   .signin {
     &--new {
       position: absolute;
       right: 16px;
       top: 16px;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(0, 0, 0, 0.3);
 
       a {
-        color: white;
+        color: $black;
+      }
+
+      &__dark {
+        color: rgba(255, 255, 255, 0.3);
+
+        a {
+          color: white;
+        }
       }
     }
 
@@ -64,7 +111,11 @@ export default {
       line-height: 34px;
       font-size: 24px;
       text-align: center;
-      color: $white;
+      color: $black;
+
+      &__dark {
+        color: $white;
+      }
     }
 
     &--button {
@@ -81,8 +132,8 @@ export default {
     }
 
     &--input {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(198, 208, 235, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
       border-radius: 4px;
       height: 60px;
@@ -93,7 +144,16 @@ export default {
       margin-top: 20px;
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(0, 0, 0, 0.3);
+      }
+
+      &__dark {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3);
+        }
       }
     }
 
@@ -101,8 +161,12 @@ export default {
       line-height: 25px;
       font-size: 16px;
       text-align: center;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(0, 0, 0, 0.3);
       text-decoration: none;
+
+      &__dark {
+        color: rgba(255, 255, 255, 0.3);
+      }
     }
   }
 }
