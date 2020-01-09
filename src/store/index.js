@@ -3,8 +3,11 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const userSelectedDarkMode =
+  window.localStorage.getItem('isDarkMode') === 'true' ? true : false
+
 const state = {
-  isDarkMode: true
+  isDarkMode: userSelectedDarkMode
 }
 
 const getters = {
@@ -18,9 +21,11 @@ const mutations = {
     if (state.isDarkMode === true) {
       state.isDarkMode = false
       document.body.style.backgroundColor = '#f0f3f5'
+      window.localStorage.setItem('isDarkMode', 'false')
     } else {
       state.isDarkMode = true
       document.body.style.backgroundColor = '#212c4f'
+      window.localStorage.setItem('isDarkMode', 'true')
     }
   }
 }

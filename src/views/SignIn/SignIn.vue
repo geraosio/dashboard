@@ -63,6 +63,9 @@ export default {
   },
   methods: {
     ...mapMutations(['toggleDarkMode'])
+  },
+  mounted() {
+    this.isDarkMode
   }
 }
 </script>
