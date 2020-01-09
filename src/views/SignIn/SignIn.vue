@@ -54,18 +54,15 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   name: 'SignIn',
-  data() {
-    return {
-      isDarkMode: true
-    }
+  computed: {
+    ...mapGetters(['isDarkMode'])
   },
   methods: {
-    toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode
-      document.body.style.background = this.isDarkMode ? '#212c4f' : '#f0f3f5'
-    }
+    ...mapMutations(['toggleDarkMode'])
   }
 }
 </script>
