@@ -6,6 +6,10 @@ Vue.use(Vuex)
 const userSelectedDarkMode =
   window.localStorage.getItem('isDarkMode') === 'true' ? true : false
 
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.localStorage.setItem('isDarkMode', 'true')
+}
+
 const state = {
   isDarkMode: userSelectedDarkMode
 }
