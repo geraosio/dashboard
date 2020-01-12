@@ -61,7 +61,7 @@ export default {
 
     &__right {
       transform: translateX(90%);
-      background: #1b233f;
+      background: $super-dark-blue;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
   }
