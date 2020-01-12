@@ -1,6 +1,8 @@
 <template>
   <div class="team-container">
-    <h2 class="team--title">Team</h2>
+    <h2 class="team--title" :class="{ 'team--title__dark': isDarkMode }">
+      Team
+    </h2>
     <div class="team--cards">
       <Card
         v-for="(tool, index) in tools"
@@ -81,6 +83,11 @@ export default {
 
   &--title {
     @include heading-2;
+    color: $black;
+
+    &__dark {
+      color: $white;
+    }
   }
 
   &--cards {
