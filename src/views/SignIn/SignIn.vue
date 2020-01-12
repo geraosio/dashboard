@@ -42,29 +42,26 @@
           If you are not sure what to put in the asterisks, don't worry click
           here!
         </router-link>
-        <button class="signin--button" @click="toggleDarkMode">Toggle</button>
+        <ThemeSwitch />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
+
 import RequestAccount from '@/components/RequestAccount.vue'
+import ThemeSwitch from '@/components/ThemeSwitch.vue'
 
 export default {
   name: 'SignIn',
   components: {
-    RequestAccount
+    RequestAccount,
+    ThemeSwitch
   },
   computed: {
     ...mapGetters(['isDarkMode'])
-  },
-  methods: {
-    ...mapMutations(['toggleDarkMode'])
-  },
-  mounted() {
-    this.isDarkMode
   }
 }
 </script>
