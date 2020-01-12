@@ -50,6 +50,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import * as netlifyIdentityWidget from 'netlify-identity-widget'
 
 import RequestAccount from '@/components/RequestAccount.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
@@ -62,6 +63,9 @@ export default {
   },
   computed: {
     ...mapGetters(['isDarkMode'])
+  },
+  mounted() {
+    netlifyIdentityWidget.open()
   }
 }
 </script>
