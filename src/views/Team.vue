@@ -2,7 +2,12 @@
   <div class="team-container">
     <h2 class="team--title">Team</h2>
     <div class="team--cards">
-      <Card v-for="(tool, index) in tools" :key="index" v-bind="tool" />
+      <Card
+        v-for="(tool, index) in tools"
+        :key="index"
+        v-bind="tool"
+        :animation-delay="index * 0.5"
+      />
     </div>
   </div>
 </template>

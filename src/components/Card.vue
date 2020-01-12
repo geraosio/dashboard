@@ -1,21 +1,23 @@
 <template>
-  <a class="card" :class="{ card__dark: isDarkMode }">
-    <img
-      :src="image.path"
-      :alt="image.altText"
-      class="card--header"
-      :class="{ 'card--header__dark': isDarkMode }"
-    />
-    <h3 class="card--title" :class="{ 'card--title__dark': isDarkMode }">
-      {{ title }}
-    </h3>
-    <p
-      class="card--description"
-      :class="{ 'card--description__dark': isDarkMode }"
-    >
-      {{ description }}
-    </p>
-  </a>
+  <transition appear appear-active-class="animated flipInX">
+    <a class="card" :class="{ card__dark: isDarkMode }">
+      <img
+        :src="image.path"
+        :alt="image.altText"
+        class="card--header"
+        :class="{ 'card--header__dark': isDarkMode }"
+      />
+      <h3 class="card--title" :class="{ 'card--title__dark': isDarkMode }">
+        {{ title }}
+      </h3>
+      <p
+        class="card--description"
+        :class="{ 'card--description__dark': isDarkMode }"
+      >
+        {{ description }}
+      </p>
+    </a>
+  </transition>
 </template>
 
 <script>
@@ -43,10 +45,14 @@ export default {
     description: {
       type: String,
       required: true
-    }
+    },
+    animationDelay: Number
   },
   computed: {
     ...mapGetters(['isDarkMode'])
+  },
+  mounted() {
+    this.$el.style.animationDelay = `${this.animationDelay}s`
   }
 }
 </script>
