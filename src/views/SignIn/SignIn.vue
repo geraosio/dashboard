@@ -1,21 +1,7 @@
 <template>
   <div class="container" :class="{ container__dark: isDarkMode }">
     <div class="signin">
-      <transition
-        name="slide-in-right"
-        enter-active-class="animated slideInRight"
-      >
-        <div
-          v-if="show"
-          class="signin--new"
-          :class="{ 'signin--new__dark': isDarkMode }"
-        >
-          Don't have an account yet?
-          <router-link to="/request" class="signin--link signin--link__new">
-            Request an account here!
-          </router-link>
-        </div>
-      </transition>
+      <RequestAccount />
       <div class="signin--wrapper">
         <img
           src="@/assets/DCHQ.svg"
@@ -64,13 +50,12 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import RequestAccount from '@/components/RequestAccount.vue'
 
 export default {
   name: 'SignIn',
-  data() {
-    return {
-      show: false
-    }
+  components: {
+    RequestAccount
   },
   computed: {
     ...mapGetters(['isDarkMode'])
@@ -80,7 +65,6 @@ export default {
   },
   mounted() {
     this.isDarkMode
-    this.show = true
   }
 }
 </script>
@@ -98,25 +82,6 @@ export default {
   }
 
   .signin {
-    &--new {
-      position: absolute;
-      right: 24px;
-      top: 16px;
-      color: rgba(0, 0, 0, 0.3);
-
-      a {
-        color: $black;
-      }
-
-      &__dark {
-        color: rgba(255, 255, 255, 0.3);
-
-        a {
-          color: white;
-        }
-      }
-    }
-
     &--wrapper {
       width: 400px;
     }
