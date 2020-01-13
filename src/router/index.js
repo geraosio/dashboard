@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import * as netlifyIdentityWidget from 'netlify-identity-widget'
+import { auth } from '@/main'
 
 import Home from '../views/Home.vue'
 import Team from '../views/Team.vue'
@@ -51,7 +51,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  const currentUser = netlifyIdentityWidget.currentUser()
+  const currentUser = auth.currentUser()
   const routeRequiresAuth = to.matched.some(route => route.meta.requiresAuth)
 
   if (routeRequiresAuth && !currentUser) {

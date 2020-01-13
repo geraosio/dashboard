@@ -54,7 +54,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import * as netlifyIdentityWidget from 'netlify-identity-widget'
 import { auth } from '@/main'
 
 import RequestAccount from '@/components/RequestAccount.vue'
@@ -86,9 +85,6 @@ export default {
           alert(`Error: ${error}`)
         })
     }
-  },
-  mounted() {
-    netlifyIdentityWidget.open()
   }
 }
 </script>
