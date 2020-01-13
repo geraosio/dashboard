@@ -21,19 +21,23 @@
         >
           Sign into Design+Code
         </h4>
-        <input
-          type="email"
-          placeholder="design.code@designcode.com"
-          class="signin--input"
-          :class="{ 'signin--input__dark': isDarkMode }"
-        />
-        <input
-          type="password"
-          placeholder="********"
-          class="signin--input"
-          :class="{ 'signin--input__dark': isDarkMode }"
-        />
-        <button class="signin--button">Sign In</button>
+        <form @submit.prevent="signInHandler">
+          <input
+            type="email"
+            placeholder="design.code@designcode.com"
+            class="signin--input"
+            :class="{ 'signin--input__dark': isDarkMode }"
+            v-model="email"
+          />
+          <input
+            type="password"
+            placeholder="********"
+            class="signin--input"
+            :class="{ 'signin--input__dark': isDarkMode }"
+            v-model="password"
+          />
+          <button class="signin--button">Sign In</button>
+        </form>
         <router-link
           to="/recover"
           class="signin--link"
@@ -51,6 +55,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import * as netlifyIdentityWidget from 'netlify-identity-widget'
+import { auth } from '@/main'
 
 import RequestAccount from '@/components/RequestAccount.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
@@ -61,8 +66,26 @@ export default {
     RequestAccount,
     ThemeSwitch
   },
+  data() {
+    return {
+      email: null,
+      password: null
+    }
+  },
   computed: {
     ...mapGetters(['isDarkMode'])
+  },
+  methods: {
+    signInHandler() {
+      auth
+        .login(this.email, this.password, true)
+        .then(() => {
+          this.$router.replace('/')
+        })
+        .catch(error => {
+          alert(`Error: ${error}`)
+        })
+    }
   },
   mounted() {
     netlifyIdentityWidget.open()
