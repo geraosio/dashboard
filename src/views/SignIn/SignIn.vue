@@ -32,6 +32,7 @@
             class="signin--input"
             :class="{ 'signin--input__dark': isDarkMode }"
             v-model="email"
+            required
           />
           <input
             type="password"
@@ -39,6 +40,7 @@
             class="signin--input"
             :class="{ 'signin--input__dark': isDarkMode }"
             v-model="password"
+            required
           />
           <button class="signin--button">Sign In</button>
         </form>
@@ -98,7 +100,6 @@ export default {
   },
   mounted() {
     if (this.$route.params.userLoggedOut) {
-      console.log('Notification has text')
       this.notification.hasText = true
       this.notification.text = 'You have logged out!'
     }
@@ -167,6 +168,7 @@ export default {
       &__dark {
         background: rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $black;
 
         &::placeholder {
           color: rgba(255, 255, 255, 0.3);
