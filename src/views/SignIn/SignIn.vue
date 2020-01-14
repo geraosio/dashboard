@@ -1,7 +1,11 @@
 <template>
   <div class="container" :class="{ container__dark: isDarkMode }">
+    <Notification
+      v-if="notification.hasText"
+      :text="notification.text"
+    ></Notification>
+    <RequestAccount></RequestAccount>
     <div class="signin">
-      <RequestAccount />
       <div class="signin--wrapper">
         <img
           src="@/assets/DCHQ.svg"
@@ -21,19 +25,23 @@
         >
           Sign into Design+Code
         </h4>
-        <input
-          type="email"
-          placeholder="design.code@designcode.com"
-          class="signin--input"
-          :class="{ 'signin--input__dark': isDarkMode }"
-        />
-        <input
-          type="password"
-          placeholder="********"
-          class="signin--input"
-          :class="{ 'signin--input__dark': isDarkMode }"
-        />
-        <button class="signin--button">Sign In</button>
+        <form @submit.prevent="signInHandler">
+          <input
+            type="email"
+            placeholder="design.code@designcode.com"
+            class="signin--input"
+            :class="{ 'signin--input__dark': isDarkMode }"
+            v-model="email"
+          />
+          <input
+            type="password"
+            placeholder="********"
+            class="signin--input"
+            :class="{ 'signin--input__dark': isDarkMode }"
+            v-model="password"
+          />
+          <button class="signin--button">Sign In</button>
+        </form>
         <router-link
           to="/recover"
           class="signin--link"
@@ -50,18 +58,50 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { auth } from '@/main'
 
 import RequestAccount from '@/components/RequestAccount.vue'
 import ThemeSwitch from '@/components/ThemeSwitch.vue'
+import Notification from '@/components/Notification.vue'
 
 export default {
   name: 'SignIn',
   components: {
     RequestAccount,
-    ThemeSwitch
+    ThemeSwitch,
+    Notification
+  },
+  data() {
+    return {
+      email: null,
+      password: null,
+      notification: {
+        hasText: false,
+        text: ''
+      }
+    }
   },
   computed: {
     ...mapGetters(['isDarkMode'])
+  },
+  methods: {
+    signInHandler() {
+      auth
+        .login(this.email, this.password, true)
+        .then(() => {
+          this.$router.replace('/')
+        })
+        .catch(error => {
+          alert(`Error: ${error}`)
+        })
+    }
+  },
+  mounted() {
+    if (this.$route.params.userLoggedOut) {
+      console.log('Notification has text')
+      this.notification.hasText = true
+      this.notification.text = 'You have logged out!'
+    }
   }
 }
 </script>
