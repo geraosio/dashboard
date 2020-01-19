@@ -64,7 +64,33 @@ export default {
     ...mapGetters(['isDarkMode'])
   },
   methods: {
-    requestHandler() {}
+    requestHandler() {
+      let slackURL = new URL('https://slack.com/api/chat.postMessage')
+
+      const data = {
+        token: ['xoxb-910533269376-912421563543-hZvlwZzRScXhmclJZMfJ3Vmk'],
+        channel: 'dashboard',
+        text: `${this.email} has requested admin access to HQ. Please go to Netlify to invite them.`
+      }
+
+      slackURL.search = new URLSearchParams(data)
+
+      console.log(slackURL)
+
+      fetch(slackURL)
+        .then(() => {
+          this.$router.push({
+            name: 'signin',
+            params: {
+              userRequestedAccount: true,
+              email: this.email
+            }
+          })
+        })
+        .catch(error => {
+          alert(`Error: ${error}`)
+        })
+    }
   }
 }
 </script>
