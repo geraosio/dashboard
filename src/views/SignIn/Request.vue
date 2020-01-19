@@ -119,7 +119,7 @@ export default {
       height: 60px;
       width: 100%;
       font-size: 20px;
-      color: $white;
+      color: $black;
       padding-left: 20px;
       margin-top: 20px;
 
@@ -130,7 +130,7 @@ export default {
       &__dark {
         background: rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.2);
-        color: $black;
+        color: $white;
 
         &::placeholder {
           color: rgba(255, 255, 255, 0.3);
