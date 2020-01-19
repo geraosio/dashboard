@@ -99,9 +99,17 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.params.userLoggedOut) {
+    const params = this.$route.params
+
+    if (params.userLoggedOut) {
       this.notification.hasText = true
       this.notification.text = 'You have logged out!'
+    } else if (params.userRecoveredAccount) {
+      this.notification.hasText = true
+      this.notification.text = `A recovery email has been sent to ${params.email}!`
+    } else if (params.userRequestedAccount) {
+      this.notification.hasText = true
+      this.notification.text = `Your request has been sent to an administrator for ${params.email}`
     }
   }
 }

@@ -24,7 +24,7 @@ export default {
     this.show = true
     setTimeout(() => {
       this.show = false
-    }, 3000)
+    }, 4000)
   }
 }
 </script>

@@ -75,8 +75,6 @@ export default {
 
       slackURL.search = new URLSearchParams(data)
 
-      console.log(slackURL)
-
       fetch(slackURL)
         .then(() => {
           this.$router.push({
