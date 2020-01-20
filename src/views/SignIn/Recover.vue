@@ -4,13 +4,13 @@
     <div class="recover">
       <div class="recover--wrapper">
         <img
-          src="@/assets/DCHQ.svg"
+          src="@/assets/logos/DCHQ.svg"
           alt="Design+Code Logo"
           class="recover--logo"
           v-if="isDarkMode"
         />
         <img
-          src="@/assets/DCHQ-dark.svg"
+          src="@/assets/logos/DCHQ-dark.svg"
           alt="Design+Code Logo"
           class="recover--logo"
           v-if="!isDarkMode"
