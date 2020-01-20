@@ -11,8 +11,8 @@
         'theme-switch--switch__right': isDarkMode
       }"
     >
-      <img v-if="isDarkMode" src="@/assets/moon.svg" alt="Moon" />
-      <img v-else src="@/assets/sun.svg" alt="Sun" />
+      <img v-if="isDarkMode" src="@/assets/icons/moon.svg" alt="Moon" />
+      <img v-else src="@/assets/icons/sun.svg" alt="Sun" />
     </div>
   </div>
 </template>
