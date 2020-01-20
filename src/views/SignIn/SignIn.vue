@@ -32,6 +32,7 @@
             class="signin--input"
             :class="{ 'signin--input__dark': isDarkMode }"
             v-model="email"
+            required
           />
           <input
             type="password"
@@ -39,6 +40,7 @@
             class="signin--input"
             :class="{ 'signin--input__dark': isDarkMode }"
             v-model="password"
+            required
           />
           <button class="signin--button">Sign In</button>
         </form>
@@ -97,10 +99,17 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.params.userLoggedOut) {
-      console.log('Notification has text')
+    const params = this.$route.params
+
+    if (params.userLoggedOut) {
       this.notification.hasText = true
       this.notification.text = 'You have logged out!'
+    } else if (params.userRecoveredAccount) {
+      this.notification.hasText = true
+      this.notification.text = `A recovery email has been sent to ${params.email}!`
+    } else if (params.userRequestedAccount) {
+      this.notification.hasText = true
+      this.notification.text = `Your request has been sent to an administrator for ${params.email}`
     }
   }
 }
@@ -156,7 +165,7 @@ export default {
       height: 60px;
       width: 100%;
       font-size: 20px;
-      color: $white;
+      color: $black;
       padding-left: 20px;
       margin-top: 20px;
 
@@ -167,6 +176,7 @@ export default {
       &__dark {
         background: rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $white;
 
         &::placeholder {
           color: rgba(255, 255, 255, 0.3);
