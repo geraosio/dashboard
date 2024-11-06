@@ -8,7 +8,8 @@ Vue.config.productionTip = false
 
 // Initialize GoTrue JS for Netlify
 export const auth = new GoTrue({
-  APIUrl: 'https://geraosio-dashboard.netlify.com/.netlify/identity',
+  APIUrl: 'https://geraosio-dashboard.netlify.app/.netlify/identity',
+  audience: '',
   setCookie: true // Remember that the user is logged in
 })
 
