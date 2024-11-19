@@ -8,13 +8,13 @@
     <div class="signin">
       <div class="signin--wrapper">
         <img
-          src="@/assets/DCHQ.svg"
+          src="@/assets/logos/DCHQ.svg"
           alt="Design+Code Logo"
           class="signin--logo"
           v-if="isDarkMode"
         />
         <img
-          src="@/assets/DCHQ-dark.svg"
+          src="@/assets/logos/DCHQ-dark.svg"
           alt="Design+Code Logo"
           class="signin--logo"
           v-if="!isDarkMode"
